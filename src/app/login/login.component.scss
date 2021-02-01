@@ -1,0 +1,81 @@
+.main-content {
+    background-color: #eeeeee;
+    height: 100%;
+    width: 100%;
+}
+
+.login {
+    text-align: center;
+    margin: 0 auto;
+    width: 30%;
+    border-radius: 10px;
+    border: 2px solid #eeeeee;
+    padding-left: 50px;
+    padding-right: 50px;
+    -webkit-box-shadow: 0px 4px 10px 11px rgba(0, 0, 0, 0.44);
+    box-shadow: 0px 4px 10px 11px rgba(0, 0, 0, 0.44);
+    position: absolute;
+    top: 30%;
+    left: 35%;
+}
+
+.username {
+    width: 80%;
+    color: black;
+}
+
+.password {
+    width: 80%;
+}
+
+.login mat-label {
+    color: black;
+}
+
+.logo {
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    color: green;
+    font-size: 60px;
+    font-weight: bold;
+    max-width: 5em;
+    margin: auto;
+}
+
+.login-btn {
+    margin-bottom: 20px;
+    margin-left: 60%;
+    background-color: #197278 !important;
+    min-width: 120px;
+    width: 120px;
+}
+
+.login-btn:hover {
+    background-color: #125256 !important;
+}
+
+.login-btn span {
+    vertical-align: middle;
+}
+
+#mat-input-1 {
+    color: black;
+}
+
+ ::ng-deep .mat-form-field-underline {
+    background-color: black !important;
+}
+
+ ::ng-deep.mat-form-field-ripple {
+    background-color: red !important;
+}
+
+.material-icons {
+    margin-left: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .login {
+        width: 100%;
+        left: auto;
+    }
+}

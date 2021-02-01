@@ -1,0 +1,88 @@
+<form [formGroup]="form" class="form-wrapper">
+    <div>
+        <mat-form-field>
+            <input matInput cdkFocusInitial placeholder="Name" formControlName="name" />
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" formControlName="dueDate" placeholder="Due date" [min]="startDate" [max]="endDate" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-select placeholder="Labels" [compareWith]="compareLabel" formControlName="labelList" multiple>
+                <mat-option *ngFor="let label of labelList" [value]="label">
+                    <div class="square" [ngStyle]="{'background-color': label.backgroundColor,'color': label.textColor}">
+                    </div>
+                    {{label?.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-select placeholder="Assignees" [compareWith]="compareUser" formControlName="userList" multiple>
+                <mat-option *ngFor="let user of userList" [value]="user">
+                    <img [src]="user?.profPic" alt="profPic" class="example-header-image" [matTooltip]="user?.username"> {{user.username}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+</form>
+<mat-divider></mat-divider>
+
+<div>
+    <h3>Comment</h3>
+    <form [formGroup]="formComment">
+        <div>
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <input matInput placeholder="Comment text..." formControlName="commentText">
+                <button mat-icon-button matSuffix (click)="share()">
+                    <mat-icon>send</mat-icon> 
+                </button>
+            </mat-form-field>
+        </div>
+    </form>
+    <mat-accordion>
+        <mat-expansion-panel expanded=true hideToggle style="max-height: 15em; overflow: auto;">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Comment
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngFor="let comment of commentList" class="commentList">
+                <!-- {{data?.user?.userId}} === {{comment?.userId?.userId}} -->
+                <div class="commentPhoto">
+                    <div *ngIf="data?.user?.userId === comment?.userId?.userId">
+                        <img [src]="comment?.userId?.profPic" alt="profPic" class="example-header-image" style="float:left;" [matTooltip]="comment?.userId?.username">
+                    </div>
+                    <div *ngIf="data?.user?.userId !== comment?.userId?.userId" style="text-align: end;">
+                        <img [src]="comment?.userId?.profPic" alt="profPic" class="example-header-image" style="float:right;" [matTooltip]="comment?.userId?.username">
+                    </div>
+                </div>
+
+                <div class="commentText">
+                    <span>
+                        {{comment.commentText}}</span>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="save()">Save</button>
+    <button *ngIf="data.enableDelete" mat-fab color="primary" aria-label="Delete" (click)="deleteTask()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

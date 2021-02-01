@@ -1,0 +1,24 @@
+:host {
+    display: block;
+}
+
+.item {
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-left: solid #a72c32 2px;
+}
+
+.item:hover {
+    border-left: solid #a72c32 5px;
+    background-color: whitesmoke;
+}
+
+.example-header-image {
+    width: 25px;
+    background-size: cover;
+    border-radius: 100%;
+}
+
+.label-chip {
+    cursor: pointer;
+}

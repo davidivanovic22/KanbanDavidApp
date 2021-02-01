@@ -1,0 +1,138 @@
+mat-toolbar {
+    margin-bottom: 20px;
+}
+
+mat-toolbar>span {
+    margin-left: 10px;
+}
+
+.content-wrapper {
+    max-width: 1400px;
+    height: 100%;
+}
+
+.container-wrapper {
+    display: inline-flex;
+    justify-content: space-around;
+    margin-top: 18em;
+}
+
+.list,
+.taskTitle {
+    // border: solid 1px #ccc;
+    border-radius: 4px;
+    width: 400px;
+    margin: 25px 25px 25px 25px;
+    max-height: 30em;
+    overflow: auto;
+}
+
+.taskControl {
+    float: right;
+}
+
+.taskTitle h2 {
+    margin-bottom: -1em;
+}
+
+app-new-task {
+    margin-bottom: 30px;
+}
+
+.project-wrapper {
+    text-align: center;
+    margin-top: 2em;
+}
+
+.project-icon {
+    font-size: 40px;
+}
+
+.menu-icon {
+    font-size: 10px;
+    vertical-align: initial !important;
+    color: black!important;
+}
+
+.empty-label {
+    font-size: 2em;
+    padding-top: 10px;
+    text-align: center;
+    opacity: 0.2;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.taskOptions {
+    text-align: end;
+}
+
+.btnAddTask:hover,
+.btnMore:hover {
+    cursor: pointer;
+    background-color: #aeafb0;
+    border-radius: 50%;
+}
+
+.example-viewport {
+    height: 300px;
+    width: 370px;
+}
+
+.example-item-detail {
+    height: 18px;
+}
+
+.example-alternate {
+    background: rgba(127, 127, 127, 0.3);
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.btnProject {
+    margin-left: 1em;
+}
+
+.projectToolbar {
+    overflow-x: auto;
+    background-color: transparent;
+}
+
+.btnAddColumn {
+    width: 120px;
+    height: 40px;
+    margin-right: 1em;
+}
+
+.example-header-image {
+    width: 35px;
+    background-size: cover;
+    border-radius: 100%;
+    vertical-align: middle;
+}
+
+.userPic {
+    margin-top: 1em;
+    margin-left: 1em;
+}
+
+.example-chip-list {
+    width: 100%;
+}
+
+.userChip {
+    background: transparent !important;
+}
+
+.fixedToolbar {
+    position: fixed;
+    width: 80%;
+}

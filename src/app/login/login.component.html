@@ -1,0 +1,22 @@
+<div class="main-content">
+    <div class="login">
+        <img alt="" class="logo" src="../../assets/images/kanban-logo.png">
+        <form [formGroup]="form">
+            <div class="input-username">
+                <mat-form-field class="full-width username">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username">
+                </mat-form-field>
+            </div>
+            <div class="input-password">
+                <mat-form-field class="full-width password">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary" (click)="login()" class="login-btn" [disabled]="!form.valid">LOGIN
+          <span class="material-icons">send</span>
+        </button>
+        </form>
+    </div>
+</div>

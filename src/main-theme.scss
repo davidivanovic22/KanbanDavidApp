@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+@include mat-core();
+$mat-kanban: ( 50:#00ff00, 100: #00e600, 200:#00cc00, 300: #00b300, 400: #009900, 500: #006600, 600:#008000, 700: #006600, 800: #004d00, 900:#003300, A100 :#66ff99, A200 :#33ff77, A400: #006600, A700 :#003300, contrast: ( 50: #000000, 100: #000000, 200: #000000, 300: #ffffff, 400: #ffffff, 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #000000, A400: #ffffff, A700: #ffffff, ));
+$mat-warn: ( 50:#ff8c1a, 100: #ff8000, 200:#e67300, 300: #cc6600, 400:#b35900, 500:#cc6600, 600:#994d00, 700:#804000, 800: #663300, 900#4d2600 A100 :#66ff99, A200: #ffa64d, A400: #006600, A700 :#003300, contrast: ( 50: #000000, 100: #000000, 200: #000000, 300: #ffffff, 400: #ffffff, 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #000000, A400: #ffffff, A700: #ffffff, ));
+// $app-primary: mat-palette($mat-red);
+// $app-accent:  mat-palette($mat-grey, A200, A100, A400);
+$app-primary: mat-palette($mat-kanban);
+$app-accent: mat-palette($mat-grey, A200, A100, A400);
+$app-warn: mat-palette($mat-warn);
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+@include angular-material-theme($app-theme);

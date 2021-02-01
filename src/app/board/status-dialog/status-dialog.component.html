@@ -1,0 +1,15 @@
+<form [formGroup]="form" class="form-wrapper">
+    <div>
+        <mat-form-field>
+            <mat-select placeholder="Status" [compareWith]="compareStatus" formControlName="statusList" multiple>
+                <mat-option *ngFor="let status of statusList" [value]="status">
+                    {{status.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</form>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="save()">Save</button>
+</div>

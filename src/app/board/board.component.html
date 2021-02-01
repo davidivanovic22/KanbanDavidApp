@@ -1,0 +1,48 @@
+<div class="content-wrapper">
+    <div class="fixedToolbar">
+        <mat-toolbar class="projectToolbar">
+            <button mat-raised-button *ngFor="let project of projectList" color="primary" class="btnProject" (click)="getProjectStatusTaskDTO(project)">
+            {{project.name}}
+          </button>
+        </mat-toolbar>
+
+
+        <div class="userPic">
+            <h2>{{projectId?.name}}</h2>
+            <img *ngFor="let user of userList" [src]="user?.profPic" alt="profPic" class="example-header-image" [matTooltip]="user?.username" (click)="addUserSearch(user)">
+
+            <mat-form-field class="example-chip-list" *ngIf="projectId">
+                <mat-label>Users</mat-label>
+                <mat-chip-list #chipList>
+                    <mat-chip *ngFor="let user of userFilteredList" [selectable]="selectable" [removable]="removable" (removed)="remove(user)" class="userChip">
+                        <img [src]="user?.profPic" alt="profPic" class="example-header-image" [matTooltip]="user?.username">
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New user..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur">
+                </mat-chip-list>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="container-wrapper">
+        <div class="container" *ngFor="let status of statusList">
+            <div class="taskTitle">
+                <h2>{{status?.status?.name}}</h2>
+                <div class="taskControl">
+                    <mat-icon class="btnMore" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="removeColumn(status.status, status.taskList.length !== 0)" [disabled]="status.taskList.length !== 0">
+                          <mat-icon>clear</mat-icon>
+                          <span>Remove column</span>
+                        </button>
+                    </mat-menu>
+                    <mat-icon (click)="newTask(status.status, 'Add')" class="btnAddTask">add</mat-icon>
+                </div>
+            </div>
+            <mat-card cdkDropList id="{{status.status.statusId}}" [cdkDropListData]="status.taskList" [cdkDropListConnectedTo]="connectedTo" (cdkDropListDropped)="drop($event)" class="list">
+                <p class="empty-label" *ngIf="status.taskList.length === 0">Empty list</p>
+                <app-task (edit)="editTask(task,  'Edit')" *ngFor="let task of status.taskList" cdkDrag [task]="task"></app-task>
+            </mat-card>
+        </div>
+        <button mat-raised-button class="btnAddColumn" color="warn" *ngIf="statusList.length > 0" (click)="addColumn()">Add Column</button>
+    </div>
+</div>

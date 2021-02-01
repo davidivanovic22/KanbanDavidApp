@@ -1,0 +1,13 @@
+<mat-card class="item" (click)="edit.emit(task)">
+    <mat-card-title>{{ task?.name }}</mat-card-title>
+    <div class="cardItems">
+        <img *ngFor="let user of task.userList" [src]="user?.profPic" alt="profPic" class="example-header-image" [matTooltip]="user?.username">
+        <mat-chip-list>
+            <mat-chip class="label-chip" *ngFor="let label of task.labelList" [ngStyle]="{'background-color': label.backgroundColor,'color': label.textColor}">{{label.name}}</mat-chip>
+        </mat-chip-list>
+        <mat-card-subtitle>
+            Due date {{task?.dueDate | date: 'd.M.yyyy'}}
+        </mat-card-subtitle>
+    </div>
+
+</mat-card>

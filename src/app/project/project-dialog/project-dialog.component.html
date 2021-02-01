@@ -1,0 +1,48 @@
+<form [formGroup]="form" class="form-wrapper">
+    <div>
+        <mat-form-field>
+            <input matInput cdkFocusInitial placeholder="Name" formControlName="name" />
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <input matInput cdkFocusInitial placeholder="Description" formControlName="description" />
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" formControlName="startDate" placeholder="Start date" [min]="today" (dateChange)="date($event.value)" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker1" formControlName="endDate" [min]="startDate" placeholder="End date" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div *ngIf="purpose === 'Edit'">
+        <mat-form-field>
+            <mat-select placeholder="Assignees" [compareWith]="compareUser" formControlName="userList" multiple>
+                <mat-option *ngFor="let user of userList" [value]="user">
+                    <img [src]="user?.profPic" alt="profPic" class="example-header-image" [matTooltip]="user?.username"> {{user.username}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div *ngIf="purpose === 'Edit'">
+        <mat-form-field>
+            <mat-select placeholder="Status" [compareWith]="compareStatus" formControlName="statusList" multiple>
+                <mat-option *ngFor="let status of statusList" [value]="status">
+                    {{status?.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</form>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="save()" mat-raised-button color="primary">Save</button>
+</div>

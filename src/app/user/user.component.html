@@ -1,0 +1,24 @@
+<div class="wrapper">
+    <button mat-raised-button color="primary" class="addUserBtn" (click)="addUser('Add', null)">Add User</button>
+    <div class="kanbanWrapper">
+        <div class="kanbanItems">
+            <mat-card class="kanbanItem" *ngFor="let user of userList">
+                <!-- <div class="kanbanText"> -->
+                <img mat-card-image [src]="user.profPic" alt="Photo" class="profPic">
+                <mat-card-content>
+                    <span *ngFor="let role of user.roleList; let i = index;">
+                            <span *ngIf='i === user.roleList.length - 1'>{{role?.name}}</span>
+                    <span *ngIf='i !== user.roleList.length - 1'>{{role?.name}}, </span>
+                    </span>
+                    <mat-card-title>{{user.firstName}} {{user.lastName}}</mat-card-title>
+                    <div class="userBtn">
+                        <button mat-stroked-button color="primary" (click)="addUser('Edit',user)">Edit</button>
+                        <!-- <button *ngIf="user.recordStatus == 1" mat-raised-button color="primary" (click)="archiveUser(user)">Archive</button>
+                            <button *ngIf="user.recordStatus == 0" mat-raised-button color="primary" (click)="enableUser(user)">Enable</button> -->
+                    </div>
+                </mat-card-content>
+                <!-- </div> -->
+            </mat-card>
+        </div>
+    </div>
+</div>
