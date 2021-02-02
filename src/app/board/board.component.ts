@@ -11,6 +11,7 @@ import { TaskDialogComponent } from './task/task-dialog/task-dialog.component';
 import { Task } from 'src/@types/entity/Task';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+// console\.(log|loper|warn|err)\(([^)]+)\);
 interface StatusTaskDTO {
   status: Status;
   taskList: Task[];
@@ -25,9 +26,9 @@ interface StatusTaskDTO {
 })
 export class BoardComponent implements OnInit {
   constructor(private dialog: MatDialog, private userService: UserService,
-              private loggedInUserService: LoggedInUserService,
-              private projectService: ProjectService,
-              private statusService: StatusService) {
+    private loggedInUserService: LoggedInUserService,
+    private projectService: ProjectService,
+    private statusService: StatusService) {
 
 
   }
@@ -47,12 +48,12 @@ export class BoardComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   ngOnInit(): void {
-    console.log(this.statusList.length);
+
 
     this.getLoggedInUser().then(data => {
       if (data) {
         this.loggedInUser = data;
-        console.log(this.loggedInUser, 'LoggedInUser');
+
         this.getProjectList();
       }
     });
@@ -71,14 +72,14 @@ export class BoardComponent implements OnInit {
   getProjectList(): void {
     this.userService.getProjectListByUserId(this.loggedInUser.userId).subscribe(data => {
       this.projectList = data;
-      console.log(this.projectList, 'Projekti');
+
     });
   }
 
   getProjectStatusTaskDTO(projectId: any): void {
     this.projectId = projectId;
     this.projectService.getProjectStatusTaskDTO(projectId.projectId).subscribe(data => {
-      console.log(data);
+
       this.statusList = data.statusTaskDTOList;
       this.statusFiltered = data.statusTaskDTOList;
       for (const status of this.statusList) {
@@ -147,7 +148,7 @@ export class BoardComponent implements OnInit {
 
 
   removeColumn(status: any, haveTasks: boolean): void {
-    console.log(haveTasks, 'TacnoILiNe');
+
     if (!haveTasks) {
       const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
         width: '350px',
@@ -177,8 +178,7 @@ export class BoardComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
-    console.log(event, 'Task');
-    // console.log(event.container.id);
+
     statusId = +event.container.id;
     taskList = event.container.data;
     this.statusService.getById(statusId).subscribe(data => {
@@ -187,13 +187,19 @@ export class BoardComponent implements OnInit {
         status,
         taskList
       };
-      console.log(statusTaskDTO);
+
 
       this.statusService.saveStatusTaskDTO(statusTaskDTO).subscribe(res => {
-        console.log(res);
+
 
       });
     });
+  }
+
+  dropColumn(event: CdkDragDrop<any[]>): void {
+    console.log(event);
+
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
   }
 
   addUserSearch(user: any): void {

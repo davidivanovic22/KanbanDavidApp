@@ -117,7 +117,7 @@ export class ProjectDialogComponent implements OnInit {
   }
 
   date(event: MatDatepickerInputEvent<Date>): void {
-    console.log(event, 'Datum');
+
 
     this.startDate = event;
   }

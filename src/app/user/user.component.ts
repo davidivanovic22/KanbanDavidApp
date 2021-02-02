@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
   getAllUser(): void {
     this.userService.getAll().subscribe(data => {
       this.userList = data;
-      console.log(this.userList, 'userList');
+
 
     });
   }
@@ -43,19 +43,19 @@ export class UserComponent implements OnInit {
 
   archiveUser(user: any): void {
     user.recordStatus = 0;
-    console.log(user);
+
 
     this.userService.update(user).subscribe(data => {
-      console.log('Ovde');
+
     });
   }
 
   enableUser(user: any): void {
     user.recordStatus = 1;
-    console.log(user);
+
 
     this.userService.update(user).subscribe(data => {
-      console.log('Ovde');
+
     });
   }
 

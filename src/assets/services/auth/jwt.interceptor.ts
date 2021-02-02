@@ -23,7 +23,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }
     return next.handle(request).pipe(
       tap(succ => {
-        // console.log(, request.method);
+        // 
         const status = (succ as any).status;
         if (status && status === 200 && !request.url.includes('login')) {
           switch (request.method) {
@@ -40,7 +40,7 @@ export class JwtInterceptor implements HttpInterceptor {
           }
         }
       }, error => {
-        console.log(error.status);
+
 
         if (error.status === 401 || error.status === 403) {
           this.authenticationService.logout();

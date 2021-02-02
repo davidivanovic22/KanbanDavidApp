@@ -37,7 +37,7 @@ export class AuthenticationService {
       responseType: 'text'
       , headers: this.httpHeaders
     }).subscribe(token => {
-      console.log(token, 'Token');
+
       if (token) {
         this.userToken = jwt_decode(token);
         this.token = token;

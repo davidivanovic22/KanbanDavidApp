@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     this.getLoggedInUser().then(data => {
       if (data) {
         this.loggedInUser = data;
-        console.log(this.loggedInUser, 'LoggedInUser');
+
         this.getProjectList();
       }
     });
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
   getProjectList(): void {
     this.userService.getProjectListByUserId(this.loggedInUser.userId).subscribe(data => {
       this.projectList = data;
-      console.log(this.projectList, 'Projekti');
+
     });
   }
 

@@ -1,11 +1,9 @@
 import { TaskService } from './../../../../assets/services/task/task.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LabelService } from './../../../../assets/services/label/label.service';
-import { User } from './../../../../@types/entity/User.d';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommentService } from 'src/assets/services/comment/comment.service';
-import { Label } from 'src/@types/entity/Label';
 import { ProjectService } from 'src/assets/services/project/project.service';
 import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirmation-dialog.component';
 
@@ -31,14 +29,14 @@ export class TaskDialogComponent implements OnInit {
     commentText: new FormControl(null, Validators.required)
   });
   constructor(private dialog: MatDialog,
-              public dialogRef: MatDialogRef<TaskDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private commentService: CommentService,
-              private labelService: LabelService,
-              private projectService: ProjectService,
-              private taskService: TaskService
+    public dialogRef: MatDialogRef<TaskDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private commentService: CommentService,
+    private labelService: LabelService,
+    private projectService: ProjectService,
+    private taskService: TaskService
   ) {
-    console.log(data, 'Podaci');
+
 
     if (data.purpose === 'Edit') {
       this.form.get('name')?.setValue(data.task.name);
@@ -77,7 +75,7 @@ export class TaskDialogComponent implements OnInit {
       projectId = this.data.task.projectId.projectId;
     }
     this.projectService.getUserList(projectId).subscribe(data => {
-      console.log(data, 'UserList');
+
       this.userList = data;
     });
   }
@@ -86,7 +84,7 @@ export class TaskDialogComponent implements OnInit {
     this.commentService.getAllCommentByTaskId(this.data.task.taskId).subscribe(data => {
       if (data) {
         this.commentList = data;
-        console.log(this.commentList);
+
       }
     });
   }
@@ -96,17 +94,17 @@ export class TaskDialogComponent implements OnInit {
       const form = this.form.value;
       form.projectId = this.data.projectId;
       form.statusId = this.data.statusId;
-      console.log(form);
+
       this.taskService.save(form).subscribe(data => {
         this.close();
       });
     } else {
       const form = this.form.value;
-      console.log(this.data.task.projectId, 'projectId');
+
       form.taskId = this.data.task.taskId;
       form.projectId = this.data.task.projectId;
       form.statusId = this.data.task.statusId;
-      console.log(form);
+
       this.taskService.save(form).subscribe(data => {
         this.close();
       });
@@ -143,7 +141,7 @@ export class TaskDialogComponent implements OnInit {
     const form = this.formComment.value;
     form.taskId = this.data.task;
     form.userId = this.data.user;
-    console.log(form);
+
 
     this.commentService.save(form).subscribe(data => {
       this.getAllCommentByTaskId();

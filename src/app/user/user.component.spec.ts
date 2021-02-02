@@ -54,7 +54,7 @@ describe('UserComponent', () => {
     const hostElement = fixture.nativeElement;
 
     component.ngOnInit();
-    console.log(component.userList);
+
 
     fixture.detectChanges();
     const cards = hostElement.querySelectorAll('.kanbanItem');

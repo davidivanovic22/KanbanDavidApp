@@ -10,7 +10,7 @@ export class LoginAuthGuard implements CanActivate {
 
   canActivate(): boolean {
     // izbrisati return true nakon implementacije logina na backendu
-    console.log(this.authService.isLoggedIn, ' LoginAuth');
+
 
     if (!this.authService.isLoggedIn) {
       return true;

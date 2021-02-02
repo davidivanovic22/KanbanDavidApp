@@ -23,9 +23,9 @@
             </mat-form-field>
         </div>
     </div>
-    <div class="container-wrapper">
-        <div class="container" *ngFor="let status of statusList">
-            <div class="taskTitle">
+    <div class="container-wrapper" cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="statusList" (cdkDropListDropped)="dropColumn($event)">
+        <div class="container" *ngFor="let status of statusList" cdkDrag>
+            <div class="taskTitle" style="cursor: move;">
                 <h2>{{status?.status?.name}}</h2>
                 <div class="taskControl">
                     <mat-icon class="btnMore" [matMenuTriggerFor]="menu">more_vert</mat-icon>

@@ -41,10 +41,10 @@ export class UserDialogComponent implements OnInit {
     roleList: new FormControl()
   });
   constructor(public dialogRef: MatDialogRef<UserDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private projectService: ProjectService,
-              private userService: UserService,
-              private roleService: RoleService) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private projectService: ProjectService,
+    private userService: UserService,
+    private roleService: RoleService) {
     this.user = data.user;
     this.purpose = data.purpose;
   }
@@ -111,7 +111,7 @@ export class UserDialogComponent implements OnInit {
     const projectList: any[] = this.form.get('projectList')?.value;
     const roleList: any[] = this.form.get('roleList')?.value;
 
-    console.log(projectList);
+
 
     if (this.form.valid) {
       if (this.purpose === 'Add') {

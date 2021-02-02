@@ -31,7 +31,7 @@ export class StatusDialogComponent implements OnInit {
   }
 
   save(): void {
-    console.log(this.form.value, 'Vrednost');
+
 
     const statusList: any[] = this.form.get('statusList')?.value;
     if (this.form.valid) {
