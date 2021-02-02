@@ -81,8 +81,8 @@
 </div>
 
 <div mat-dialog-actions>
-    <button mat-button (click)="save()">Save</button>
-    <button *ngIf="data.enableDelete" mat-fab color="primary" aria-label="Delete" (click)="deleteTask()">
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+    <button *ngIf="data.enableDelete && commentList.length === 0" mat-fab color="primary" aria-label="Delete" (click)="deleteTask()">
     <mat-icon>delete</mat-icon>
   </button>
 </div>

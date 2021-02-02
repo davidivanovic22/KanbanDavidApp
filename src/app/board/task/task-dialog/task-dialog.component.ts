@@ -3,10 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LabelService } from './../../../../assets/services/label/label.service';
 import { User } from './../../../../@types/entity/User.d';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommentService } from 'src/assets/services/comment/comment.service';
 import { Label } from 'src/@types/entity/Label';
 import { ProjectService } from 'src/assets/services/project/project.service';
+import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-task-dialog',
@@ -29,13 +30,13 @@ export class TaskDialogComponent implements OnInit {
   formComment = new FormGroup({
     commentText: new FormControl(null, Validators.required)
   });
-  constructor(
-    public dialogRef: MatDialogRef<TaskDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private commentService: CommentService,
-    private labelService: LabelService,
-    private projectService: ProjectService,
-    private taskService: TaskService
+  constructor(private dialog: MatDialog,
+              public dialogRef: MatDialogRef<TaskDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private commentService: CommentService,
+              private labelService: LabelService,
+              private projectService: ProjectService,
+              private taskService: TaskService
   ) {
     console.log(data, 'Podaci');
 
@@ -125,8 +126,16 @@ export class TaskDialogComponent implements OnInit {
   }
 
   deleteTask(): void {
-    this.taskService.delete(this.data.task.taskId).subscribe(data => {
-      this.close();
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: 'Do you want delete?'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.taskService.delete(this.data.task.taskId).subscribe(data => {
+          this.close();
+        });
+      }
     });
   }
 

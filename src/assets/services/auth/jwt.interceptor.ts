@@ -3,10 +3,12 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { AuthenticationService } from './authentication.service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { tap } from 'rxjs/operators';
+import { SnackbarService } from '../snackbar/snackbar-handler';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService, private snackService: SnackbarService) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -19,6 +21,36 @@ export class JwtInterceptor implements HttpInterceptor {
         },
       });
     }
-    return next.handle(request);
+    return next.handle(request).pipe(
+      tap(succ => {
+        // console.log(, request.method);
+        const status = (succ as any).status;
+        if (status && status === 200 && !request.url.includes('login')) {
+          switch (request.method) {
+            case 'POST':
+              this.snackService.showSuccessSnackbar('Succes save!');
+              break;
+            case 'PUT':
+            case 'PATCH':
+              this.snackService.showSuccessSnackbar('Succes edit!');
+              break;
+            case 'DELETE':
+              this.snackService.showSuccessSnackbar('Succes delete!');
+              break;
+          }
+        }
+      }, error => {
+        console.log(error.status);
+
+        if (error.status === 401 || error.status === 403) {
+          this.authenticationService.logout();
+        }
+        if (error.status === 0) {
+          this.snackService.showErrorSnackbar('The server is currently unavailable, please try again later!');
+        } else {
+          this.snackService.showErrorSnackbar(error.error.exception || error.error);
+        }
+      }),
+    );
   }
 }

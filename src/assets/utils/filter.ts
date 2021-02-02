@@ -16,10 +16,8 @@ export const genericFilter = (filterData: string[], searchString: string) => {
     });
 };
 
-export const filterTask = (object: any, searchString: string) => {
-    console.log(object.username, ' ', searchString);
-
-    const data = [object.username]
+export const filterUser = (user: any, searchString: string) => {
+    const data = [user.username, user.firstName, user.lastName]
         .filter(field => field);
     return genericFilter(data, searchString);
 };

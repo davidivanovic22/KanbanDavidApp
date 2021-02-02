@@ -64,3 +64,15 @@
     background-color: #006600 !important;
     color: white;
 }
+
+::ng-deep snack-bar-container.alert-red {
+    padding: 20px;
+    background-color: white;
+    color: red;
+}
+
+::ng-deep snack-bar-container.alert-green {
+    padding: 20px;
+    background-color: white;
+    color: green;
+}

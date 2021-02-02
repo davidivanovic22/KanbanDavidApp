@@ -9,11 +9,10 @@ import { AppRoutingModule } from '../app-routing.module';
 import { MaterialModule } from '../material.module';
 
 import { ProjectComponent } from './project.component';
-
 describe('ProjectComponent', () => {
   let component: ProjectComponent;
   let fixture: ComponentFixture<ProjectComponent>;
-
+  const validProject: any = [];
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProjectComponent],
@@ -45,5 +44,19 @@ describe('ProjectComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should table has header', () => {
+    const hostElement = fixture.nativeElement;
+    const ourDomTableUnderTest: any = hostElement.querySelector('.mat-table');
+    const headerList: any = [];
+    const listWithTableHeader: string[] = ['Name', 'Description', 'Start Date', 'End Date'];
+    const projectInTable: any = ourDomTableUnderTest.querySelectorAll('.mat-header-cell');
+    projectInTable.forEach((project: any) => {
+      headerList.push(project.innerText);
+    });
+    listWithTableHeader.forEach(header => {
+      expect(headerList).toContain(header);
+    });
+
   });
 });

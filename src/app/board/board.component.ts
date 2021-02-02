@@ -10,7 +10,7 @@ import { UserService } from 'src/assets/services/user/user.service';
 import { TaskDialogComponent } from './task/task-dialog/task-dialog.component';
 import { Task } from 'src/@types/entity/Task';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { filterTask } from 'src/assets/utils/filter';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 interface StatusTaskDTO {
   status: Status;
   taskList: Task[];
@@ -144,11 +144,21 @@ export class BoardComponent implements OnInit {
     });
   }
 
+
+
   removeColumn(status: any, haveTasks: boolean): void {
     console.log(haveTasks, 'TacnoILiNe');
     if (!haveTasks) {
-      this.projectService.deleteStatusFromListByProjectId(this.projectId.projectId, status.statusId).subscribe(data => {
-        this.getProjectStatusTaskDTO(this.projectId);
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+        width: '350px',
+        data: 'Do you want delete?'
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.projectService.deleteStatusFromListByProjectId(this.projectId.projectId, status.statusId).subscribe(data => {
+            this.getProjectStatusTaskDTO(this.projectId);
+          });
+        }
       });
     }
   }

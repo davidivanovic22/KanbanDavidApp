@@ -1,4 +1,3 @@
-import { MatDialogRef, MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { TaskDialogComponent } from './board/task/task-dialog/task-dialog.component';
 import { TaskComponent } from './board/task/task.component';
 import { BoardComponent } from './board/board.component';
@@ -23,6 +22,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserDialogComponent } from './user/user-dialog/user-dialog.component';
 import { ProjectComponent } from './project/project.component';
 import { ProjectDialogComponent } from './project/project-dialog/project-dialog.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { SnackbarService } from 'src/assets/services/snackbar/snackbar-handler';
+import { UserPipe } from './pipes/user/user.pipe';
 registerLocaleData(localeRS);
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ registerLocaleData(localeRS);
     UserComponent,
     UserDialogComponent,
     ProjectComponent,
-    ProjectDialogComponent
+    ProjectDialogComponent,
+    ConfirmationDialogComponent,
+    UserPipe
   ],
   imports: [
     BrowserModule,
@@ -52,9 +56,9 @@ registerLocaleData(localeRS);
   ],
   providers: [
     CookieService,
+    SnackbarService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: LOCALE_ID, useValue: 'sr-Latn' },
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
+    { provide: LOCALE_ID, useValue: 'sr-Latn' }
   ],
   bootstrap: [AppComponent]
 })

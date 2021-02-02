@@ -1,8 +1,15 @@
 <div class="wrapper">
-    <button mat-raised-button color="primary" class="addUserBtn" (click)="addUser('Add', null)">Add User</button>
-    <div class="kanbanWrapper">
-        <div class="kanbanItems">
-            <mat-card class="kanbanItem" *ngFor="let user of userList">
+    <h1 class="userTitle">User</h1>
+    <div class="userControl">
+        <button mat-raised-button color="primary" class="addUserBtn" (click)="addUser('Add', null)">Add User</button>
+        <mat-form-field class="searchField">
+            <input matInput (keypress)="omit_special_char($event)" placeholder="Search..." [(ngModel)]="filter" />
+            <mat-icon matPrefix class="prefixIcon">search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div class="userWrapper">
+        <div class="userItems">
+            <mat-card class="userItem" *ngFor="let user of userList | userFilter: filter">
                 <!-- <div class="kanbanText"> -->
                 <img mat-card-image [src]="user.profPic" alt="Photo" class="profPic">
                 <mat-card-content>
