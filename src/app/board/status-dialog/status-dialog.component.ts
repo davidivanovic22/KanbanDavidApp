@@ -15,6 +15,7 @@ import { StatusService } from 'src/assets/services/status/status.service';
 export class StatusDialogComponent implements OnInit {
   projectId!: any;
   statusList: any = [];
+  statusListParent: any = [];
   form = new FormGroup({
     statusList: new FormControl()
   });
@@ -24,6 +25,9 @@ export class StatusDialogComponent implements OnInit {
     private projectService: ProjectService,
     private statusService: StatusService) {
     this.projectId = data.projectId;
+    this.statusListParent = data.statusList;
+    console.log(this.statusListParent, "Parent");
+
   }
 
   ngOnInit(): void {
@@ -31,11 +35,9 @@ export class StatusDialogComponent implements OnInit {
   }
 
   save(): void {
-
-
     const statusList: any[] = this.form.get('statusList')?.value;
     if (this.form.valid) {
-      this.projectService.saveStatusList(this.projectId.projectId, statusList).subscribe(data => {
+      this.projectService.addStatusList(this.projectId.projectId, statusList).subscribe(data => {
         this.close();
       });
     }
@@ -43,7 +45,7 @@ export class StatusDialogComponent implements OnInit {
 
 
   getAllStatus(): void {
-    this.statusService.getAll().subscribe(data => {
+    this.statusService.getAllWithoutDuplicate(this.projectId.projectId).subscribe(data => {
       this.statusList = data;
     });
   }

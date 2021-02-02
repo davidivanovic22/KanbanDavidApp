@@ -15,6 +15,9 @@ export class StatusService {
     return this.http.get<any>(`${environment.baseUrl}/status`, { responseType: 'json' });
   }
 
+  getAllWithoutDuplicate(projectId: number): Observable<any> {
+    return this.http.get<any>(`${environment.baseUrl}/status/` + projectId + `/withoutDuplicate`);
+  }
 
   getByName(name: string): Observable<any> {
     return this.http.get<any>(`${environment.baseUrl}/status/` + name, { responseType: 'json' });
