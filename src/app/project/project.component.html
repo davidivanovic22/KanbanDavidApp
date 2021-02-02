@@ -1,8 +1,13 @@
 <div class="example-container">
     <h1 class="projectTitle">Project</h1>
     <div class="example-table-container">
-        <button mat-button mat-raised-button color="primary" class="addProjectBtn" (click)="addProject('Add', null)">Add Project</button>
-
+        <div class="projectControl">
+            <button mat-button mat-raised-button color="primary" class="addProjectBtn" (click)="addProject('Add', null)">Add Project</button>
+            <mat-form-field class="searchField">
+                <input #search matInput placeholder="Search..." (input)="applyFilter(search.value)" />
+                <mat-icon matPrefix class="prefixIcon">search</mat-icon>
+            </mat-form-field>
+        </div>
         <table mat-table [dataSource]="dataSource" class="example-table" matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
             <ng-container matColumnDef="name" class="mat-column-name">
                 <th mat-header-cell *matHeaderCellDef>Name</th>

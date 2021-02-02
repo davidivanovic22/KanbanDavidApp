@@ -1,3 +1,4 @@
+import { filterProject } from './../../assets/utils/filter';
 import { MatDialog } from '@angular/material/dialog';
 import { ProjectService } from 'src/assets/services/project/project.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -20,6 +21,7 @@ export class ProjectComponent implements OnInit {
   dataSource = new MatTableDataSource([]);
   projectList: any = [];
   constructor(private dialog: MatDialog, private projectService: ProjectService) { }
+  public filter = '';
 
   ngOnInit(): void {
     this.getAllProject();
@@ -53,4 +55,9 @@ export class ProjectComponent implements OnInit {
       );
   }
 
+  applyFilter(filterValue: string): void {
+    this.dataSource.data = this.projectList.filter((project: any) => {
+      return filterProject(project, filterValue);
+    });
+  }
 }

@@ -40,7 +40,7 @@ registerLocaleData(localeRS);
     ProjectComponent,
     ProjectDialogComponent,
     ConfirmationDialogComponent,
-    UserPipe
+    UserPipe,
   ],
   imports: [
     BrowserModule,

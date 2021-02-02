@@ -6,13 +6,11 @@ import { filterUser } from 'src/assets/utils/filter';
 })
 export class UserPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
-
-
-    value = value.filter(function (search: any) {
+  transform(user: any, args?: any): any {
+    user = user.filter((search: any) => {
       return filterUser(search, args);
     });
-    return value;
+    return user;
   }
 
 }

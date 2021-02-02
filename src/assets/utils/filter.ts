@@ -21,3 +21,9 @@ export const filterUser = (user: any, searchString: string) => {
         .filter(field => field);
     return genericFilter(data, searchString);
 };
+
+export const filterProject = (project: any, searchString: string) => {
+    const data = [project.name]
+        .filter(field => field);
+    return genericFilter(data, searchString);
+};
