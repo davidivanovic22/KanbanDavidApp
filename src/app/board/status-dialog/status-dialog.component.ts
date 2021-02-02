@@ -36,8 +36,11 @@ export class StatusDialogComponent implements OnInit {
 
   save(): void {
     const statusList: any[] = this.form.get('statusList')?.value;
+    this.statusListParent.forEach((status: any) => {
+      statusList.push(status.status);
+    });
     if (this.form.valid) {
-      this.projectService.addStatusList(this.projectId.projectId, statusList).subscribe(data => {
+      this.projectService.saveStatusList(this.projectId.projectId, statusList).subscribe(data => {
         this.close();
       });
     }

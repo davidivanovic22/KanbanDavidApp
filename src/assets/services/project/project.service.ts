@@ -48,9 +48,6 @@ export class ProjectService {
     return this.http.post<any>(`${environment.baseUrl}/project/` + projectId + `/statusList/`, statusList);
   }
 
-  addStatusList(projectId: number, statusList: any[]): Observable<any> {
-    return this.http.post<any>(`${environment.baseUrl}/project/` + projectId + `/statusColumnList/`, statusList);
-  }
 
   deleteStatusFromListByProjectId(projectId: number, statusId: number): Observable<any> {
     return this.http.delete<any>(`${environment.baseUrl}/project/statusList/` + projectId + '/' + statusId);
