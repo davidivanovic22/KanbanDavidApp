@@ -200,7 +200,7 @@ export class BoardComponent implements OnInit {
   }
 
   dropColumn(event: CdkDragDrop<any[]>): void {
-    console.log(event);
+
 
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
   }

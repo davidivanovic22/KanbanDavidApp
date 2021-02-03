@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, DoCheck {
   @ViewChild('sidenav', { static: false }) sidenav!: MatSidenav;
   menuItems: any[] = [];
   opened = false;
-  activeRoute: string = window.location.pathname;
+  activeRoute!: string;
 
   constructor(private authService: AuthenticationService) {
   }
@@ -44,6 +44,7 @@ export class AppComponent implements OnInit, DoCheck {
 
   setMenuItem(): void {
     if (this.authService.isLoggedIn) {
+      this.activeRoute = window.location.pathname;
       if (this.authService.isAdmin()) {
         this.menuItems = [{ title: 'Home', icon: 'home_work', path: '/home' },
         { title: 'User', icon: 'face', path: '/user' },
@@ -66,8 +67,8 @@ export class AppComponent implements OnInit, DoCheck {
 
   }
 
-  changeRoute() {
-    console.log("Ovde");
+  changeRoute(): void {
+
 
     this.activeRoute = window.location.pathname;
   }

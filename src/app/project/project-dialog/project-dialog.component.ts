@@ -101,7 +101,7 @@ export class ProjectDialogComponent implements OnInit {
           this.close();
         });
         const statusList: any[] = this.form.get('statusList')?.value;
-        console.log(statusList);
+
 
         if (statusList.length > 0) {
           this.projectService.saveStatusList(this.project.projectId, statusList).subscribe(data => {

@@ -136,12 +136,20 @@ app-new-task {
     width: 80%;
 }
 
+::-webkit-scrollbar {}
+
 @media only screen and (max-width: 600px) {
     .projectToolbar {
         margin-left: 2em !important;
     }
+    .fixedToolbar {
+        position: initial;
+    }
     .btnProject {
         font-size: 14px;
         min-width: 9em;
+    }
+    .container-wrapper {
+        margin-top: 0 !important;
     }
 }

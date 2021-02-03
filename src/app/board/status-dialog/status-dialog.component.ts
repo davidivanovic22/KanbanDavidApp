@@ -26,7 +26,7 @@ export class StatusDialogComponent implements OnInit {
     private statusService: StatusService) {
     this.projectId = data.projectId;
     this.statusListParent = data.statusList;
-    console.log(this.statusListParent, "Parent");
+
 
   }
 
