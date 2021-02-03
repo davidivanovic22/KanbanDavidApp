@@ -42,20 +42,15 @@ export class UserComponent implements OnInit {
   }
 
   archiveUser(user: any): void {
-    user.recordStatus = 0;
-
-
-    this.userService.update(user).subscribe(data => {
-
+    this.userService.updateRecordStatus(user.userId, 0).subscribe(data => {
+      this.getAllUser();
     });
   }
 
   enableUser(user: any): void {
     user.recordStatus = 1;
-
-
-    this.userService.update(user).subscribe(data => {
-
+    this.userService.updateRecordStatus(user.userId, 1).subscribe(data => {
+      this.getAllUser();
     });
   }
 

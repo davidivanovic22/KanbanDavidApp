@@ -2,8 +2,8 @@
     <mat-drawer #sidenav [opened]="opened" id="menu" mode="side" style="width: 150px !important;">
         <img alt="" class="kanban-logo" src="../../assets/images/kanban-logo.png">
         <hr>
-        <mat-list class="role-menu-list">
-            <mat-list-item *ngFor="let menuItem of menuItems" class="role-menu-list-item">
+        <mat-list class="role-menu-list" (click)="changeRoute()">
+            <mat-list-item *ngFor="let menuItem of menuItems" class="role-menu-list-item" [ngClass]="{'activeRoute': menuItem.path === activeRoute}">
                 <mat-icon mat-list-icon>{{menuItem.icon}}</mat-icon>
                 <div mat-line routerLink="{{menuItem.path}}">{{menuItem.title}}</div>
             </mat-list-item>
@@ -14,7 +14,7 @@
         </mat-list>
     </mat-drawer>
     <mat-drawer-content>
-        <button (click)="sidenav.toggle()" id="hamburger" mat-icon-button>
+        <button (click)="sidenav.toggle()" id="hamburger" *ngIf="opened" mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
         <router-outlet></router-outlet>

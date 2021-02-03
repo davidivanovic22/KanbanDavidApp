@@ -28,13 +28,7 @@
     width: 80%;
 }
 
-.login mat-label {
-    color: black;
-}
-
 .logo {
-    font-family: Comic Sans MS, Comic Sans, cursive;
-    color: green;
     font-size: 60px;
     font-weight: bold;
     max-width: 5em;
@@ -44,29 +38,12 @@
 .login-btn {
     margin-bottom: 20px;
     margin-left: 60%;
-    background-color: #197278 !important;
     min-width: 120px;
     width: 120px;
 }
 
-.login-btn:hover {
-    background-color: #125256 !important;
-}
-
 .login-btn span {
     vertical-align: middle;
-}
-
-#mat-input-1 {
-    color: black;
-}
-
- ::ng-deep .mat-form-field-underline {
-    background-color: black !important;
-}
-
- ::ng-deep.mat-form-field-ripple {
-    background-color: red !important;
 }
 
 .material-icons {

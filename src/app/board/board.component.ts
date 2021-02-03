@@ -1,3 +1,4 @@
+import { AuthenticationService } from 'src/assets/services/auth/authentication.service';
 import { StatusDialogComponent } from './status-dialog/status-dialog.component';
 import { Status } from './../../@types/entity/Status.d';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
@@ -26,6 +27,7 @@ interface StatusTaskDTO {
 })
 export class BoardComponent implements OnInit {
   constructor(private dialog: MatDialog, private userService: UserService,
+    private authService: AuthenticationService,
     private loggedInUserService: LoggedInUserService,
     private projectService: ProjectService,
     private statusService: StatusService) {
@@ -93,7 +95,8 @@ export class BoardComponent implements OnInit {
 
   newTask(statusId: any, purpose: string): void {
     const dialogRef = this.dialog.open(TaskDialogComponent, {
-      width: '270px',
+      width: 'auto',
+      maxHeight: '80%',
       data: {
         statusId,
         projectId: this.projectId,
@@ -112,7 +115,7 @@ export class BoardComponent implements OnInit {
 
   editTask(task: Task, purpose: string): void {
     const dialogRef = this.dialog.open(TaskDialogComponent, {
-      width: '30%',
+      width: 'auto',
       maxHeight: '80%',
       data: {
         task,
@@ -130,7 +133,7 @@ export class BoardComponent implements OnInit {
 
   addColumn(): void {
     const dialogRef = this.dialog.open(StatusDialogComponent, {
-      width: '30%',
+      width: 'auto',
       maxHeight: '80%',
       data: {
         projectId: this.projectId,
@@ -227,4 +230,9 @@ export class BoardComponent implements OnInit {
 
     }
   }
+
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
 }

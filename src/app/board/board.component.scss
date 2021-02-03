@@ -27,12 +27,10 @@ mat-toolbar>span {
     overflow: auto;
 }
 
-.taskControl {
-    float: right;
-}
-
-.taskTitle h2 {
-    margin-bottom: -1em;
+.taskTitle {
+    cursor: move;
+    display: flex;
+    justify-content: space-between
 }
 
 app-new-task {
@@ -136,4 +134,14 @@ app-new-task {
 .fixedToolbar {
     position: fixed;
     width: 80%;
+}
+
+@media only screen and (max-width: 600px) {
+    .projectToolbar {
+        margin-left: 2em !important;
+    }
+    .btnProject {
+        font-size: 14px;
+        min-width: 9em;
+    }
 }

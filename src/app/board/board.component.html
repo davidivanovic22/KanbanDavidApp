@@ -25,9 +25,9 @@
     </div>
     <div class="container-wrapper" cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="statusList" (cdkDropListDropped)="dropColumn($event)">
         <div class="container" *ngFor="let status of statusList" cdkDrag>
-            <div class="taskTitle" style="cursor: move;">
+            <div class="taskTitle">
                 <h2>{{status?.status?.name}}</h2>
-                <div class="taskControl">
+                <div class="taskControl" *ngIf="isAdmin()">
                     <mat-icon class="btnMore" [matMenuTriggerFor]="menu">more_vert</mat-icon>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item (click)="removeColumn(status.status, status.taskList.length !== 0)" [disabled]="status.taskList.length !== 0">
@@ -43,6 +43,6 @@
                 <app-task (edit)="editTask(task,  'Edit')" *ngFor="let task of status.taskList" cdkDrag [task]="task"></app-task>
             </mat-card>
         </div>
-        <button mat-raised-button class="btnAddColumn" color="primary" *ngIf="statusList.length > 0" (click)="addColumn()">Add Column</button>
+        <button mat-raised-button class="btnAddColumn" color="primary" *ngIf="statusList.length > 0 && isAdmin()" (click)="addColumn()">Add Column</button>
     </div>
 </div>

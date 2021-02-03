@@ -48,7 +48,7 @@ export class JwtInterceptor implements HttpInterceptor {
         if (error.status === 0) {
           this.snackService.showErrorSnackbar('The server is currently unavailable, please try again later!');
         } else {
-          this.snackService.showErrorSnackbar(error.error.exception || error.error);
+          this.snackService.showErrorSnackbar(error.error.exception || error.error.error || error.error);
         }
       }),
     );

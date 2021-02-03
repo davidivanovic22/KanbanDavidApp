@@ -23,7 +23,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient, private router: Router) {
     try {
-      this.token = localStorage.getItem('userToken');
+      this.token = sessionStorage.getItem('userToken');
       this.userToken = jwt_decode(this.token);
     } catch (e) {
       console.error(e);
@@ -41,7 +41,7 @@ export class AuthenticationService {
       if (token) {
         this.userToken = jwt_decode(token);
         this.token = token;
-        localStorage.setItem('userToken', token);
+        sessionStorage.setItem('userToken', token);
         this.router.navigate(['home']);
       }
     });
@@ -50,7 +50,7 @@ export class AuthenticationService {
   logout(): void {
     this.userToken = undefined;
     this.token = '';
-    localStorage.removeItem('userToken');
+    sessionStorage.removeItem('userToken');
     this.router.navigate(['']);
   }
 

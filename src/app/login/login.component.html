@@ -4,14 +4,12 @@
         <form [formGroup]="form">
             <div class="input-username">
                 <mat-form-field class="full-width username">
-                    <mat-label>Username</mat-label>
-                    <input matInput formControlName="username">
+                    <input matInput placeholder="Username" formControlName="username">
                 </mat-form-field>
             </div>
             <div class="input-password">
                 <mat-form-field class="full-width password">
-                    <mat-label>Password</mat-label>
-                    <input matInput type="password" formControlName="password">
+                    <input matInput placeholder="Password" type="password" formControlName="password">
                 </mat-form-field>
             </div>
             <button mat-raised-button color="primary" (click)="login()" class="login-btn" [disabled]="!form.valid">LOGIN

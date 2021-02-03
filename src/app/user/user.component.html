@@ -18,10 +18,11 @@
                     <span *ngIf='i !== user.roleList.length - 1'>{{role?.name}}, </span>
                     </span>
                     <mat-card-title>{{user.firstName}} {{user.lastName}}</mat-card-title>
+                    <mat-card-subtitle>{{user.username}}</mat-card-subtitle>
                     <div class="userBtn">
                         <button mat-stroked-button color="primary" (click)="addUser('Edit',user)">Edit</button>
-                        <!-- <button *ngIf="user.recordStatus == 1" mat-raised-button color="primary" (click)="archiveUser(user)">Archive</button>
-                            <button *ngIf="user.recordStatus == 0" mat-raised-button color="primary" (click)="enableUser(user)">Enable</button> -->
+                        <button *ngIf="user.recordStatus == 1" mat-raised-button color="primary" (click)="archiveUser(user)">Archive</button>
+                        <button *ngIf="user.recordStatus == 0" mat-raised-button color="primary" (click)="enableUser(user)">Enable</button>
                     </div>
                 </mat-card-content>
                 <!-- </div> -->

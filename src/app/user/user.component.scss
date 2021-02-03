@@ -92,6 +92,10 @@ body {
     text-align: center;
 }
 
+.userBtn button+button {
+    margin-left: 1em;
+}
+
 @media only screen and (max-width: 600px) {
     #hamburger {
         display: initial;

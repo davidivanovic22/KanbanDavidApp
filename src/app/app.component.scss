@@ -16,8 +16,13 @@
     font-size: 20px !important;
 }
 
+::ng-deep .activeRoute {
+    background-color: #006600;
+    color: white !important;
+}
+
  ::ng-deep .role-menu-list .role-menu-list-item:hover {
-    background-color: #197278;
+    background-color: #006600;
     transition: background-color 150ms linear;
     color: white;
 }
@@ -41,7 +46,7 @@
  ::ng-deep ::selection {
     color: white;
     /*background: #34be5b;*/
-    background: #197278;
+    background: #006600;
 }
 
 #hamburger {
@@ -52,6 +57,7 @@
     #hamburger {
         display: initial;
         position: fixed;
+        z-index: 9999;
     }
 }
 
@@ -75,4 +81,8 @@
     padding: 20px;
     background-color: white;
     color: green;
+}
+
+::ng-deep .mat-stroked-button:not(.mat-button-disabled) {
+    border-color: green;
 }

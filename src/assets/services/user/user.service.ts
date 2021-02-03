@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -21,6 +21,10 @@ export class UserService {
 
   update(user: any): Observable<void> {
     return this.http.put<void>(`${environment.baseUrl}/user`, user);
+  }
+
+  updateRecordStatus(userId: number, recordStatus: number): Observable<void> {
+    return this.http.put<void>(`${environment.baseUrl}/user/` + userId + `/` + recordStatus, {});
   }
 
   getById(userId: number): Observable<any> {
